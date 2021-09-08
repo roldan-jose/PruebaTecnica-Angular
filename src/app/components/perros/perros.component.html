@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+<div class="container-lg mt-3">
+    <div class="card border-dark">
+        <div class="card-header border-dark d-flex justify-content-between align-items-center">
+            <h1>Prueba Técnica - Perros</h1>
+        </div>
+        <div class="card-body">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col" *ngFor="let perros of listPerros|keyvalue">
+                    <div class="card">
+                        <img style="height: 18rem;" [src]="perros.value" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>{{perros.value |slice:30:-4}}</strong></h5>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" type="button">Ver más</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Prueba Técnica</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-10 ms-auto">
+                        <div class="card border-success mb-3" *ngFor="let item of listPerroOne|keyvalue" style="width: 18rem;">
+                            <div class="card-header text-success border-success">
+                                <h4>{{item.value |slice:30:-4}}</h4>
+                            </div>
+                            <div class="card-body">
+                                <img [src]="item.value" class="card-img-top" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">¡Listo!</button>
+            </div>
+        </div>
+    </div>
+</div>

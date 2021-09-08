@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="card border-dark mt-3">
+        <div class="card-header border-dark d-flex justify-content-between align-items-center">
+            <h1>Prueba Técnica - Números</h1>
+        </div>
+        <div class="card-body">
+            <form autocomplete="off" [formGroup]="formN" (ngSubmit)="Guardar()">
+                <div class="mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Ingresa algunos números</label>
+                    <input type="text" name="numeros" class="form-control" id="formGroupExampleInput" placeholder="12345..." formControlName="numeros" [class]="isValidForm('numeros')">
+                    <div class="invalid-feedback"><span *ngIf="formN.get('numeros').errors?.required">Este campo es obligatorio.</span></div>
+                    <div class="invalid-feedback"><span *ngIf="formN.get('numeros').errors?.minlength">Minímo {{ formN.get('numeros').errors?.minlength?.requiredLength }} números.</span></div>
+                    <div class="invalid-feedback"><span *ngIf="formN.get('numeros').errors?.maxlength">Maxímo {{ formN.get('numeros').errors?.maxlength?.requiredLength }} números.</span></div>
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="submit" [disabled]="formN.invalid" class="btn btn-warning">Enviar Datos</button>
+                </div>
+                <div class="row g-3 mt-5">
+                    <div class="col-sm">
+                        <span class="badge rounded-pill bg-primary">Valor Máximo: {{vmax}}</span>
+                    </div>
+                    <div class="col-sm">
+                        <span class="badge rounded-pill bg-secondary">Valor Mínimo: {{vmin}}</span>
+                    </div>
+                    <div class="col-sm">
+                        <span class="badge rounded-pill bg-dark">Media: {{media}}</span>
+                    </div>
+                </div>
+                <div class="mb-3 mt-2">
+                    <label for="formGroupExampleInput2" class="form-label">RESULTADO</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{valores}}</textarea>
+                    <button class="btn btn-success mt-3" type="button" (click)="asc()">Ordenar ASC</button>&nbsp;
+                    <button class="btn btn-secondary mt-3" type="button" (click)="des()">Ordenar DESC</button>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-danger me-md-2" type="button" (click)="limpiar()">Limpiar LocalStorage</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
